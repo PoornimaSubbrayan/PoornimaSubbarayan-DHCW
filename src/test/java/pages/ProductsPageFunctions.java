@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import utility.ScreenshotUtil;
 
 import java.util.List;
 
@@ -25,13 +26,14 @@ public class ProductsPageFunctions {
         Select select = new Select(dropdown);
         select.selectByValue("lohi");
         String selectedDropDownValue = driver.findElement(By.xpath(elementReader.get("selectedDropdownOption"))).getText().trim();
+        ScreenshotUtil.attachScreenshot(driver, "Sorting Dropdown Selection");
         Assert.assertTrue("Selected dropdown value is not Low to high price", selectedDropDownValue.contains("low to high"));
         System.out.println("User has selected the sorting dropdown value as low to high price");
     }
 
     public void verifySortedProductsList() {
         List<WebElement> productsPriceList = driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
-
+        ScreenshotUtil.attachScreenshot(driver, "Sorted Products list");
         for (int i = 1; i < productsPriceList.size(); i++) {
             double previousProductPrice = Double.parseDouble(productsPriceList.get(i - 1).getText().trim().replace("$", ""));
             double currentProductPrice = Double.parseDouble(productsPriceList.get(i).getText().trim().replace("$", ""));
@@ -43,12 +45,14 @@ public class ProductsPageFunctions {
         List<WebElement> productsPriceList = driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
         previousProductsCount = productsPriceList.size();
         System.out.println("Number of products counted is :" + previousProductsCount);
+        ScreenshotUtil.attachScreenshot(driver, "Products list before sorting");
     }
 
     public void verifyProductCount() {
         List<WebElement> productsPriceList = driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
         currentProductsCount = productsPriceList.size();
         System.out.println("Number of products counted after sorting low to high price is :" + currentProductsCount);
+        ScreenshotUtil.attachScreenshot(driver, "Products list after sorting");
         Assert.assertEquals("Product count has changed after sorting", previousProductsCount, currentProductsCount);
     }
 }
