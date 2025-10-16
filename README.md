@@ -1,7 +1,7 @@
 # PoornimaSubbarayan-DHCW Test Automation Framework
 
 ## Overview
-This project is a web test automation framework built with Java, Maven, Cucumber (BDD), JUnit, and Allure for reporting. It is designed for scalable, maintainable, and efficient automated testing of web applications.
+This project is a web test automation framework built with Selenium, sJava, Maven, Cucumber (BDD), JUnit, and Allure for reporting. It is designed for scalable, maintainable, and efficient automated testing of web applications.
 
 ---
 
@@ -21,7 +21,7 @@ src/test/resources/features - this folder contains the feature files.
 src/test/java/stepdefinitions - this folder contains the step definition classes.
 src/test/java/pages - this folder contains the page object classes.
 src/test/java/hooks - this folder contains the hooks for setup and teardown.
-src/test/java/utility - this folder contains utility classes like WebDriver management and property reading.
+src/test/java/utility - this folder contains utility classes like Helper methods, capturing screenshots and property reading.
 src/test/resources/properties - this folder contains properties files for locators and test data.
 target/allure-results/ - this folder contains the results for Allure reports.
 target/allure-report/ - this folder contains the generated Allure report.

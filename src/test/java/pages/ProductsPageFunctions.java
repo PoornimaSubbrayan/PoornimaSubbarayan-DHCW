@@ -3,15 +3,12 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import utility.ScreenshotUtil;
+import utility.UiInteractables;
 
 import java.util.List;
 
-import static hooks.Hooks.driver;
-import static hooks.Hooks.elementReader;
-
-public class ProductsPageFunctions {
+public class ProductsPageFunctions extends UiInteractables {
 
     public int previousProductsCount;
     public int currentProductsCount;
@@ -21,18 +18,16 @@ public class ProductsPageFunctions {
     }
 
     public void sortingProducts() {
-        driver.findElement(By.xpath(elementReader.get("sortingDropdown"))).click();
-        WebElement dropdown = driver.findElement(By.xpath(elementReader.get("sortingDropdown")));
-        Select select = new Select(dropdown);
-        select.selectByValue("lohi");
-        String selectedDropDownValue = driver.findElement(By.xpath(elementReader.get("selectedDropdownOption"))).getText().trim();
+        UiInteractables.clickByXpath(driver, elementReader.get("sortingDropdown"));
+        UiInteractables.SelectByVText(driver, findByXpathElement(driver, elementReader.get("sortingDropdown")), "Price (low to high)");
+        String selectedDropDownValue = UiInteractables.findByXpathElement(driver, elementReader.get("selectedDropdownOption")).getText().trim();
         ScreenshotUtil.attachScreenshot(driver, "Sorting Dropdown Selection");
         Assert.assertTrue("Selected dropdown value is not Low to high price", selectedDropDownValue.contains("low to high"));
         System.out.println("User has selected the sorting dropdown value as low to high price");
     }
 
     public void verifySortedProductsList() {
-        List<WebElement> productsPriceList = driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
+        List<WebElement> productsPriceList = UiInteractables.findByXpathElements(driver, elementReader.get("productsPriceXpath"));
         ScreenshotUtil.attachScreenshot(driver, "Sorted Products list");
         for (int i = 1; i < productsPriceList.size(); i++) {
             double previousProductPrice = Double.parseDouble(productsPriceList.get(i - 1).getText().trim().replace("$", ""));
@@ -42,14 +37,14 @@ public class ProductsPageFunctions {
     }
 
     public void countProducts() {
-        List<WebElement> productsPriceList = driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
+        List<WebElement> productsPriceList = UiInteractables.findByXpathElements(driver, elementReader.get("productsPriceXpath"));
         previousProductsCount = productsPriceList.size();
         System.out.println("Number of products counted is :" + previousProductsCount);
         ScreenshotUtil.attachScreenshot(driver, "Products list before sorting");
     }
 
     public void verifyProductCount() {
-        List<WebElement> productsPriceList = driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
+        List<WebElement> productsPriceList = UiInteractables.findByXpathElements(driver, elementReader.get("productsPriceXpath"));
         currentProductsCount = productsPriceList.size();
         System.out.println("Number of products counted after sorting low to high price is :" + currentProductsCount);
         ScreenshotUtil.attachScreenshot(driver, "Products list after sorting");
