@@ -14,7 +14,7 @@ public class LoginPageFunctions extends UiInteractables {
     }
 
     public void verifyLoginErrors(String expectedErrorMessage) {
-        String actualErrorMessage = driver.findElement(By.xpath(elementReader.get("errorMessageXpath"))).getText();
+        String actualErrorMessage = UiInteractables.findByXpathElement(driver,elementReader.get("errorMessageXpath")).getText();
         ScreenshotUtil.attachScreenshot(driver, "Login page error message");
         Assert.assertEquals("Login error message is not matching when invalid credentials are entered", expectedErrorMessage, actualErrorMessage);
     }

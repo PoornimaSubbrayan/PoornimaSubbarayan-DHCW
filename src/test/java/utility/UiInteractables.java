@@ -32,20 +32,18 @@ public class UiInteractables extends Hooks {
 
     // This reusable method is used to find the element by xpath and return the element
     public static WebElement findByXpathElement(WebDriver driver, String xpath) {
-        WebElement element = driver.findElement(By.xpath(xpath));
-        return element;
+        return driver.findElement(By.xpath(xpath));
     }
 
     // This reusable method is used to find the elements by xpath and return the list of elements
     public static List<WebElement> findByXpathElements(WebDriver driver, String xpath) {
-        List<WebElement> elements = driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
-        return elements;
+        return driver.findElements(By.xpath(elementReader.get("productsPriceXpath")));
     }
 
     // This reusable method is used to select the element using web element and visible text from dropdown
-    public static void SelectByVText(WebDriver driver, WebElement DDName, String DDoption) {
-        Select select = new Select(DDName);
-        select.selectByVisibleText(DDoption);
+    public static void SelectByVText(WebElement dropdown, String dropDownOption) {
+        Select select = new Select(dropdown);
+        select.selectByVisibleText(dropDownOption);
     }
 
 }

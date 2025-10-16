@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         glue = {"stepdefinitions", "hooks"},
          plugin = {"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
         monochrome = true //,
-        //tags = "@products"
+        //tags = "@login"
 )
 public class RunCucumberTest {
 

@@ -19,7 +19,7 @@ public class ProductsPageFunctions extends UiInteractables {
 
     public void sortingProducts() {
         UiInteractables.clickByXpath(driver, elementReader.get("sortingDropdown"));
-        UiInteractables.SelectByVText(driver, findByXpathElement(driver, elementReader.get("sortingDropdown")), "Price (low to high)");
+        UiInteractables.SelectByVText(findByXpathElement(driver, elementReader.get("sortingDropdown")), "Price (low to high)");
         String selectedDropDownValue = UiInteractables.findByXpathElement(driver, elementReader.get("selectedDropdownOption")).getText().trim();
         ScreenshotUtil.attachScreenshot(driver, "Sorting Dropdown Selection");
         Assert.assertTrue("Selected dropdown value is not Low to high price", selectedDropDownValue.contains("low to high"));
